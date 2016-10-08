@@ -1,0 +1,52 @@
+{
+  "name": "kursovik-app",
+  "version": "1.0.0",
+  "description": "Показывает курс доллара",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "NODE_ENV=development webpack-dev-server --hot --inline --progress --host 0.0.0.0",
+    "build": "NODE_ENV=production webpack"
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.3.6",
+    "babel": "^6.5.2",
+    "babel-cli": "^6.10.1",
+    "babel-core": "^6.17.0",
+    "babel-loader": "^6.2.5",
+    "babel-preset-es2015": "^6.16.0",
+    "babel-preset-react": "^6.16.0",
+    "babel-preset-stage-2": "^6.17.0",
+    "cross-env": "^3.0.0",
+    "css-loader": "^0.24.0",
+    "electron": "^1.4.1",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.9.0",
+    "fuse": "^0.4.0",
+    "html-loader": "^0.4.4",
+    "html-webpack-plugin": "^2.21.0",
+    "jade": "^1.11.0",
+    "jade-html-loader": "0.0.3",
+    "node-sass": "^3.10.1",
+    "optimize-css-assets-webpack-plugin": "^1.3.0",
+    "postcss-loader": "^0.11.1",
+    "sass-loader": "^4.0.2",
+    "strip-loader": "^0.1.2",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.13.2",
+    "webpack-dev-server": "^1.16.2"
+  },
+  "dependencies": {
+    "moment": "^2.15.1",
+    "node-sass": "^3.8.0",
+    "react": "^15.1.0",
+    "react-addons-css-transition-group": "^15.3.2",
+    "react-addons-shallow-compare": "^15.3.2",
+    "react-dom": "^15.1.0",
+    "react-hot-loader": "^1.3.0",
+    "react-redux": "^4.4.5",
+    "react-router": "^2.8.1",
+    "react-router-redux": "^4.0.6",
+    "redux": "^3.5.2"
+  }
+}
