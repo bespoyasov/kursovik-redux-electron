@@ -1,0 +1,19 @@
+.header {
+  position: relative;
+  text-align: center;
+  font-size: 18px;
+  line-height: 24px;
+  padding: 40px 0;
+
+  &-value {
+    font-size: 56px;
+    line-height: 56px
+  }
+
+  &-delta {
+    display:inline-block;
+    margin-left:-10px;
+    font-size:15px;
+    padding:5px 0 0 0;
+  }
+}

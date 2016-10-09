@@ -1,8 +1,9 @@
 import cst from '../const';
 
 
-export function course_someAction(loginData) {
+export function updateCourseValue(cur, prev) {
 	return {
-		type: cst.SOME_ACTION
+		type: cst.UPDATE_COURSE_VALUE,
+		cur, prev
 	}
 };

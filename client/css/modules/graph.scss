@@ -1,0 +1,28 @@
+.graph {
+	position: relative;
+	max-width:450px;
+	margin:0 auto;
+	padding:20px 0 0 0;
+
+	&-view {
+		position: relative;
+		min-height:300px;
+	}
+
+	.react-d3-core__legend {
+		display:none;
+	}
+
+	.react-d3-core__grid_axis .tick line {
+		stroke: rgba(255,255,255,0.6) !important;
+		stroke-width: 1 !important;
+	}
+
+	.react-d3-core__grid_axis .tick:first-child {
+		opacity: 1;
+	}
+	.react-d3-core__grid_axis .tick:first-child line {
+		stroke: rgba(255,255,255,1) !important;
+		opacity: 1;
+	}
+}

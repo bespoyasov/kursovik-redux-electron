@@ -4,6 +4,8 @@ const course = {
   week: [],
   month: [],
   quart: [],
+
+  error: false,
 }
 
 

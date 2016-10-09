@@ -2,6 +2,7 @@
   position: relative;
   text-align: center;
   font-size:0;
+  user-select:none;
 
   &-tab {
     position: relative;
@@ -34,7 +35,13 @@
     &.is-active {
         border-color: #fff;
         background: #fff;
-        color: #0d9fff
     }
   }
 }
+
+
+.crs--theme1 .tabs-tab.is-active { color: $cyan; }
+.crs--theme2 .tabs-tab.is-active { color: $violet; }
+.crs--theme3 .tabs-tab.is-active { color: $blue; }
+.crs--theme4 .tabs-tab.is-active { color: $sand; }
+.crs--theme5 .tabs-tab.is-active { color: $pink; }
