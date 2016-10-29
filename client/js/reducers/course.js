@@ -13,6 +13,16 @@ function course(state = {}, action) {
 			}
 
 
+		case cst.UPDATE_COURSE_WEEK:
+			return {
+				...state,
+				week: {
+					data: action.data,
+					labels: action.labels
+				}
+			}
+
+
 		default:
       return state;
   }

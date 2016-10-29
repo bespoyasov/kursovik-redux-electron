@@ -13,18 +13,26 @@ export default class Main extends React.Component {
 
   constructor(props, context) {
     super(props, context);
+
+    this.state = {
+      themeColor: null
+    }
   }
 
 
   componentDidMount() {
     this.setRandomTheme();
     this.getCourse();
+    this.getWeeklyCourse();
   }
 
 
   setRandomTheme() {
     const rand = helpers.getRandomInt(1, 5);
     this.refs.root.classList.add('crs--theme' + rand);
+    this.setState({
+      themeColor: cst.COLORS[rand],
+    })
   }
 
 
@@ -44,6 +52,30 @@ export default class Main extends React.Component {
   }
 
 
+  getWeeklyCourse() {
+    webapi.getWeeklyCourse().then(
+
+      result => {
+        let data = [], labels = [];
+
+        for (let itm of result) {
+          const lgt = labels.length;
+          //if (lgt % 2 == 0) labels.push(helpers.formatDateFromStr(itm.attributes.Date));
+          //else labels.push('');
+          labels.push(helpers.formatDayFromStr(itm.attributes.Date));
+          data.push(parseFloat(itm.children[1].content.replace(',', '.')).toFixed(2));
+        }
+
+        this.props.updateCourseWeek(data, labels);
+      },
+      error => {
+        const errMsg = cst.MESSAGES.unknownError;
+        this.props.showErrorNotification(errMsg);
+      }
+    );
+  }
+
+
   updateTitle(cur, prev) {
     const curr = helpers.formatSum(cur);
     const delta = helpers.getDelta(cur, prev);
@@ -52,6 +84,8 @@ export default class Main extends React.Component {
 
 
   render() {
+    const themeColor = this.state.themeColor || cst.DEF_COLOR;
+
     return (
       <div className="crs" ref="root">
         <div className="crs-header">
@@ -63,7 +97,7 @@ export default class Main extends React.Component {
         </div>
 
         <div className="crs-graph">
-          <GraphView {...this.props} />
+          <GraphView color={themeColor} {...this.props} />
         </div>
       </div>
     )

@@ -7,3 +7,11 @@ export function updateCourseValue(cur, prev) {
 		cur, prev
 	}
 };
+
+
+export function updateCourseWeek(data, labels) {
+	return {
+		type: cst.UPDATE_COURSE_WEEK,
+		data, labels
+	}
+}

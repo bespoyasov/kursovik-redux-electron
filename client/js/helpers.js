@@ -1,3 +1,6 @@
+import cst from './const';
+
+
 const helpers = {
 
   getRandomInt: (min, max) => {
@@ -30,6 +33,26 @@ const helpers = {
   },
 
 
+  formatDateFromStr: (date) => {
+    const month = Math.max(parseInt(date.substr(date.indexOf('.')+1, 2)) - 1, 0);
+    const dt = parseInt(date.substr(0, 2));
+    return dt + ' ' + cst.MONTHS[month];
+  },
+
+
+  formatDayFromStr: (date) => {
+    const newdate = new Date();
+    const mh = Math.max(parseInt(date.substr(date.indexOf('.')+1, 2)) - 1, 0);
+    const dt = parseInt(date.substr(0, 2));
+    const yr = parseInt(date.substr(date.lastIndexOf('.')+1, 4));
+
+    newdate.setFullYear(yr)
+    newdate.setMonth(mh)
+    newdate.setDate(dt);
+    return cst.DAYS[newdate.getDay()].toUpperCase();
+  },
+
+
   getDelta: (cur, prev) => {
     let delta, deltaPositive, deltaStr;
     if (prev) {
@@ -37,12 +60,43 @@ const helpers = {
       deltaPositive = cur - prev > 0;
       deltaStr =
         delta > 0 ?
-        '▲ ' + delta + ' ₽' :
-        '▼ ' + delta + ' ₽';
+        '▲ ' + delta + ' ' + cst.RUB_SIGN :
+        '▼ ' + delta + ' ' + cst.RUB_SIGN;
 
       return deltaStr;
     }
     else return false;
+  },
+
+
+  getDateAgo: (days) => {
+    let now = (new Date()).getTime();
+    let ago = now - 1000*60*60*24*days;
+    let agoTime = new Date();
+    agoTime.setTime(ago);
+    let dt = agoTime.getDate();
+    if (dt < 10) dt = '0' + dt.toString();
+    return dt;
+  },
+
+
+  getMonthAgo: (days) => {
+    let now = (new Date()).getTime();
+    let ago = now - 1000*60*60*24*days;
+    let agoTime = new Date();
+    agoTime.setTime(ago);
+    let mt = agoTime.getMonth() + 1;
+    if (mt < 10) mt = '0' + mt.toString();
+    return mt
+  },
+
+
+  getYearAgo: (days) => {
+    let now = (new Date()).getTime();
+    let ago = now - 1000*60*60*24*days;
+    let agoTime = new Date();
+    agoTime.setTime(ago);
+    return agoTime.getFullYear();
   }
 }
 
