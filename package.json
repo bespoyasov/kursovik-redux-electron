@@ -2,6 +2,7 @@
   "name": "kursovik-app",
   "version": "1.0.0",
   "description": "Показывает курс доллара",
+  "author": "Александр Беспоясов",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
@@ -20,6 +21,7 @@
     "cross-env": "^3.0.0",
     "css-loader": "^0.24.0",
     "electron": "^1.4.1",
+    "electron-packager": "^8.4.0",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.9.0",
     "fuse": "^0.4.0",
@@ -38,6 +40,7 @@
   },
   "dependencies": {
     "chart.js": "^1.1.1",
+    "electron-context-menu": "^0.8.0",
     "moment": "^2.15.1",
     "node-sass": "^3.8.0",
     "react": "^15.1.0",

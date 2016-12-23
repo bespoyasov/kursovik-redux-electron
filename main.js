@@ -1,16 +1,28 @@
 const electron = require('electron')
+const path = require('path')
 const app = electron.app
 const Menu = electron.Menu;
 const Tray = electron.Tray;
 const BrowserWindow = electron.BrowserWindow
 
-let mainWindow, tray
+let mainWindow, tray;
+
+require('electron-context-menu')({
+  prepend: (params, browserWindow) => [{
+    visible: params.mediaType === 'text'
+  }],
+  showInspectElement: false,
+  labels: {
+    copy: 'Скопировать'
+  },
+});
 
 function createWindow () {
   mainWindow = new BrowserWindow({
     width: 600,
     height: 800,
     webPreferences: {webSecurity: false},
+    icon: path.join(__dirname, 'assets/app-icon.png')
   })
 
   //mainWindow.loadURL(`file://${__dirname}/public/index.html`)
