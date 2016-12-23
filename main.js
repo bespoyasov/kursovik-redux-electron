@@ -5,7 +5,7 @@ const Menu = electron.Menu;
 const Tray = electron.Tray;
 const BrowserWindow = electron.BrowserWindow
 
-let mainWindow, tray;
+let mainWindow = null, tray = null;
 
 require('electron-context-menu')({
   prepend: (params, browserWindow) => [{
@@ -20,7 +20,7 @@ require('electron-context-menu')({
 function createWindow () {
   mainWindow = new BrowserWindow({
     width: 600,
-    height: 800,
+    height: 700,
     webPreferences: {webSecurity: false},
     icon: path.join(__dirname, 'assets/app-icon.png')
   })
@@ -32,15 +32,14 @@ function createWindow () {
     mainWindow = null
   });
 
-  // tray = new Tray('http://localhost:8080/public/img/icon.png')
-  // const contextMenu = Menu.buildFromTemplate([
-  //   {label: 'Item1', type: 'radio'},
-  //   {label: 'Item2', type: 'radio'},
-  //   {label: 'Item3', type: 'radio', checked: true},
-  //   {label: 'Item4', type: 'radio'}
-  // ])
-  // tray.setToolTip('This is my application.')
-  // tray.setContextMenu(contextMenu)
+  if (!tray) {
+    tray = new Tray(path.join(__dirname, 'assets/tray-icon.png'))
+    tray.setToolTip('Открыть Курсовик')
+    tray.on('click', () => {
+      if (mainWindow !== null) mainWindow.show();
+      else createWindow()
+    })
+  }
 }
 
 app.commandLine.appendSwitch('disable-web-security');

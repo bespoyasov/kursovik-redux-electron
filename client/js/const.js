@@ -82,6 +82,13 @@ const cst = {
     unknownError: 'Что-то пошло не так. Попробуйте обновить курс'
   },
 
+  LS: {
+    current: 'kursovik_current',
+    prev: 'kursovik_prev',
+    course: 'kursovik_course',
+    app: 'kursovik_app',
+  },
+
   TABS_PERIODS: ['Неделя', 'Месяц', '3 месяца'],
   TABS_PERIODS_LATIN: ['week', 'month', 'quart'],
 

@@ -24,6 +24,7 @@ export default class Main extends React.Component {
     this.setRandomTheme();
     this.getCourse();
     this.getWeeklyCourse();
+    this.removeLoader();
 
     this.getMonthlyCourse();
     this.getQuartlyCourse();
@@ -36,6 +37,11 @@ export default class Main extends React.Component {
     this.setState({
       themeColor: cst.COLORS[rand],
     })
+  }
+
+
+  removeLoader() {
+    document.getElementById('loader').remove();
   }
 
 
