@@ -20,7 +20,7 @@ const cst = {
     maintainAspectRatio: true,
     legend: false,
     tooltips: {
-      mode: 'x-axis',
+      intersect: true,
       backgroundColor: 'rgba(255,255,255,0.9)',
       titleFontStyle: 'normal',
       titleMarginBottom: 2,
@@ -40,6 +40,9 @@ const cst = {
         ticks: {
           fontColor: 'rgba(255,255,255,.8)',
           fontFamily: 'Helvetica, sans-serif',
+          autoSkip: false,
+          maxRotation: 0,
+          minRotation: 0
         }
       }],
       yAxes: [{
@@ -50,6 +53,7 @@ const cst = {
         ticks: {
           fontColor: 'rgba(255,255,255,.8)',
           fontFamily: 'Helvetica, sans-serif',
+          callback: function(tick) { return tick.toFixed(2); },
         }
       }]
     }
@@ -68,12 +72,24 @@ const cst = {
     lineColor: '#ffffff',
   },
 
+  CHART_POINT_BORDER_WIDTH: {
+    'week': 4,
+    'month': 3,
+    'quart': 2
+  },
+
   MESSAGES: {
     unknownError: 'Что-то пошло не так. Попробуйте обновить курс'
   },
 
+  TABS_PERIODS: ['Неделя', 'Месяц', '3 месяца'],
+  TABS_PERIODS_LATIN: ['week', 'month', 'quart'],
+
   UPDATE_COURSE_VALUE: 'UPDATE_COURSE_VALUE',
   UPDATE_COURSE_WEEK: 'UPDATE_COURSE_WEEK',
+  UPDATE_COURSE_MONTH: 'UPDATE_COURSE_MONTH',
+  UPDATE_COURSE_QUART: 'UPDATE_COURSE_QUART',
+  CHANGE_ACTIVE_TAB: 'CHANGE_ACTIVE_TAB',
 }
 
 

@@ -18,7 +18,30 @@ function course(state = {}, action) {
 				...state,
 				week: {
 					data: action.data,
-					labels: action.labels
+					labels: action.labels,
+					fulllabels: action.fulllabels
+				}
+			}
+
+
+		case cst.UPDATE_COURSE_MONTH:
+			return {
+				...state,
+				month: {
+					data: action.data,
+					labels: action.labels,
+					fulllabels: action.fulllabels
+				}
+			}
+
+
+		case cst.UPDATE_COURSE_QUART:
+			return {
+				...state,
+				quart: {
+					data: action.data,
+					labels: action.labels,
+					fulllabels: action.fulllabels
 				}
 			}
 

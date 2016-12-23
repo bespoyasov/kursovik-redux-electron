@@ -24,6 +24,9 @@ export default class Main extends React.Component {
     this.setRandomTheme();
     this.getCourse();
     this.getWeeklyCourse();
+
+    this.getMonthlyCourse();
+    this.getQuartlyCourse();
   }
 
 
@@ -53,20 +56,80 @@ export default class Main extends React.Component {
 
 
   getWeeklyCourse() {
-    webapi.getWeeklyCourse().then(
+    webapi.getCourse(cst.TABS_PERIODS_LATIN[0]).then(
 
       result => {
-        let data = [], labels = [];
+        let data = [], labels = [], fulllabels = [];
 
         for (let itm of result) {
           const lgt = labels.length;
-          //if (lgt % 2 == 0) labels.push(helpers.formatDateFromStr(itm.attributes.Date));
-          //else labels.push('');
           labels.push(helpers.formatDayFromStr(itm.attributes.Date));
+          fulllabels.push(helpers.formatDateFromStr(itm.attributes.Date));
           data.push(parseFloat(itm.children[1].content.replace(',', '.')).toFixed(2));
         }
 
-        this.props.updateCourseWeek(data, labels);
+        this.props.updateCourseWeek(data, labels, fulllabels);
+      },
+      error => {
+        const errMsg = cst.MESSAGES.unknownError;
+        this.props.showErrorNotification(errMsg);
+      }
+    );
+  }
+
+
+  getMonthlyCourse() {
+    webapi.getCourse(cst.TABS_PERIODS_LATIN[1]).then(
+
+      result => {
+        let data = [], labels = [], fulllabels = [];
+        const size = result.length;
+
+        for (let i in result) {
+          const itm = result[i];
+          const lgt = labels.length;
+          const label =
+            (i == 0 || i == Math.floor((size - 1) / 2) || i == size - 1) ?
+            helpers.formatDateFromStr(itm.attributes.Date) :
+            '';
+
+          labels.push(label);
+          fulllabels.push(helpers.formatDateFromStr(itm.attributes.Date));
+          data.push(parseFloat(itm.children[1].content.replace(',', '.')).toFixed(2));
+        }
+
+        this.props.updateCourseMonth(data, labels, fulllabels);
+      },
+      error => {
+        const errMsg = cst.MESSAGES.unknownError;
+        this.props.showErrorNotification(errMsg);
+      }
+    );
+  }
+
+
+  getQuartlyCourse() {
+    webapi.getCourse(cst.TABS_PERIODS_LATIN[2]).then(
+
+      result => {
+        let data = [], labels = [], fulllabels = [];
+        const size = result.length;
+
+        for (let i in result) {
+          const itm = result[i];
+          const lgt = labels.length;
+          const label =
+            (i == 0 || i == Math.floor((size - 1) / 3) ||
+            i == 2 * Math.floor((size - 1) / 3) || i == size - 1) ?
+            helpers.formatDateFromStr(itm.attributes.Date) :
+            '';
+
+          labels.push(label);
+          fulllabels.push(helpers.formatDateFromStr(itm.attributes.Date));
+          data.push(parseFloat(itm.children[1].content.replace(',', '.')).toFixed(2));
+        }
+
+        this.props.updateCourseQuart(data, labels, fulllabels);
       },
       error => {
         const errMsg = cst.MESSAGES.unknownError;
@@ -85,6 +148,7 @@ export default class Main extends React.Component {
 
   render() {
     const themeColor = this.state.themeColor || cst.DEF_COLOR;
+    const activeTab = this.props.app.activeTab || 0;
 
     return (
       <div className="crs" ref="root">
@@ -97,7 +161,11 @@ export default class Main extends React.Component {
         </div>
 
         <div className="crs-graph">
-          <GraphView color={themeColor} {...this.props} />
+          <GraphView
+            color={themeColor}
+            period={cst.TABS_PERIODS_LATIN[activeTab]}
+            {...this.props}
+          />
         </div>
       </div>
     )

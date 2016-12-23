@@ -7,7 +7,8 @@ import Main from './main';
 
 function mapStateToProps(state) {
 	return {
-		course: state.course
+		course: state.course,
+		app: state.app
 	}
 };
 

@@ -29,14 +29,24 @@ const webapi = {
   },
 
 
-  getWeeklyCourse: () => {
-    const prevDate = helpers.getDateAgo(8);
-    const prevMonth = helpers.getMonthAgo(8);
-    const prevYear = helpers.getYearAgo(8);
-    const now = new Date();
-    const nowDate = now.getDate();
-    const nowMonth = now.getMonth() + 1;
-    const nowYear = now.getFullYear();
+  getCourse: (period) => {
+    let daysAgo = 8;
+
+    switch (period) {
+      case cst.TABS_PERIODS_LATIN[0]: daysAgo = 8; break;
+      case cst.TABS_PERIODS_LATIN[1]: daysAgo = 30; break;
+      case cst.TABS_PERIODS_LATIN[2]: daysAgo = 90; break;
+      default: break;
+    }
+
+    const prevDate = helpers.getDateAgo(daysAgo),
+          prevMonth = helpers.getMonthAgo(daysAgo),
+          prevYear = helpers.getYearAgo(daysAgo),
+
+          now = new Date(),
+          nowDate = now.getDate(),
+          nowMonth = now.getMonth() + 1,
+          nowYear = now.getFullYear();
 
     return new Promise(function(resolve, reject){
       fetch(

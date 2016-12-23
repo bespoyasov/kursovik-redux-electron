@@ -4,10 +4,12 @@ import {browserHistory} from 'react-router';
 
 import rootReducer from './reducers/index';
 import course from './data/course';
+import app from './data/app';
 
 
 const defaultState = {
-	course
+	course,
+	app
 };
 
 

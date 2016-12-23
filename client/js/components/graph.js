@@ -12,13 +12,16 @@ export default class GraphView extends React.Component {
 
   render() {
     const color = this.props.color;
+    const period = this.props.period;
 
     const chartData = {
-      labels: this.props.course.week.labels,
+      labels: this.props.course[period].labels,
       datasets: [
         {
           ...cst.CHART_DATASET_OPTIONS,
-          data: this.props.course.week.data,
+          pointRadius: cst.CHART_POINT_BORDER_WIDTH[period],
+          pointHoverRadius: cst.CHART_POINT_BORDER_WIDTH[period] + 1,
+          data: this.props.course[period].data,
         }
       ]
     };
@@ -30,7 +33,12 @@ export default class GraphView extends React.Component {
         bodyFontColor: color,
         callbacks: {
           label: (tooltipItem, data) => {
-            return tooltipItem.yLabel.toFixed(2).toString().replace('.', ',') + ' ' + cst.RUB_SIGN;
+            const propsData = this.props.course[period];
+            const prefix = propsData.fulllabels[tooltipItem.index] + ': ';
+
+            return prefix +
+              tooltipItem.yLabel.toFixed(2).toString().replace('.', ',') + ' ' +
+              cst.RUB_SIGN
           },
           footer: () => ''
         }

@@ -3,15 +3,18 @@ const course = {
   current: 0,
   week: {
     data: [],
-    labels: []
+    labels: [],
+    fulllabels: []
   },
   month: {
     data: [],
-    labels: []
+    labels: [],
+    fulllabels: []
   },
   quart: {
     data: [],
-    labels: []
+    labels: [],
+    fulllabels: []
   },
 
   error: false,
