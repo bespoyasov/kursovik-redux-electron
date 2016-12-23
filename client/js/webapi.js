@@ -19,14 +19,14 @@ const webapi = {
   },
 
 
-  updateCourseValue: (cur, prev) => {
-    const ls = window.localStorage;
-
-    if (ls) {
-      ls.setItem(cst.LS.current, cur);
-      ls.setItem(cst.LS.prev, prev);
-    }
-  },
+  // updateCourseValue: (cur, prev) => {
+  //   const ls = window.localStorage;
+  //
+  //   if (ls) {
+  //     ls.setItem(cst.LS.current, cur);
+  //     ls.setItem(cst.LS.prev, prev);
+  //   }
+  // },
 
 
   getCourse: (period) => {
