@@ -7,7 +7,9 @@
   "scripts": {
     "start": "electron .",
     "dev": "NODE_ENV=development webpack-dev-server --hot --inline --progress --host 0.0.0.0",
-    "build": "NODE_ENV=production webpack"
+    "build": "NODE_ENV=production webpack",
+    "pack": "node_modules/.bin/electron-packager . --all",
+    "packmas": "node_modules/.bin/electron-packager . --platform=mas"
   },
   "devDependencies": {
     "autoprefixer": "^6.3.6",
