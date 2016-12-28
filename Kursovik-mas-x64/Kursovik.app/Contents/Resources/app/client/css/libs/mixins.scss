@@ -1,0 +1,186 @@
+@charset "utf-8";
+
+@mixin iblock() {
+	display: -moz-inline-stack; 
+	display: inline-block; 
+	vertical-align: top; 
+	*zoom: 1; 
+	*display: inline; 
+	margin-right:-4px;
+}
+
+@mixin italic() {
+	font-style: italic
+}
+
+@mixin bold() {
+	font-weight:bold
+}
+	
+@mixin flleft() {
+	float: left
+}
+	
+@mixin flright() {
+	float:right
+}
+
+@mixin rel() {
+	position: relative
+}
+	
+@mixin abs() {
+	position:absolute
+}
+	
+@mixin fxd() {
+	position: fixed 
+}
+	
+@mixin fixed() {
+	@include fixed();
+}
+
+@mixin hidden() {
+	display: none
+}
+
+@mixin clear() {
+	width:100%; 
+	clear: both
+}
+	
+@mixin clearfix() {
+	@include clear();
+}
+	
+@mixin pointer() {
+	cursor: pointer
+}
+	
+@mixin default() {
+	cursor: default
+}
+	
+@mixin buttonReset() {
+	outline: none; 
+	-webkit-tap-highlight-color: none; 
+	border:0; 
+	background: none;
+}
+
+@mixin adaptiveImage() {
+	width:100%; 
+	max-width:100%; 
+	height:auto
+}
+	
+@mixin smallcaps() {
+	font-size: 0.875em; 
+	letter-spacing: 0.15em; 
+	margin-right: -0.15em;
+}
+	
+@mixin smallcapitals() {
+	@include smallcaps();
+}
+
+@mixin uper() {
+	text-transform: uppercase; 
+	letter-spacing: 0.05em
+}
+	
+@mixin textCenter() {
+	display:block; 
+	text-align: center
+}
+	
+@mixin positionCenter() {
+	position: absolute; 
+	top:0; 
+	left:0; 
+	bottom:0; 
+	right:0; 
+	max-width:100%; 
+	max-height:auto; 
+	margin:auto
+}
+
+@mixin centerPosition() {
+	@include positionCenter();
+}
+	
+@mixin wholeContainer() {
+	position: absolute; 
+	top:0; 
+	left:0; 
+	width:100%; 
+	height:100%
+}
+	
+@mixin after() {
+	content:' '; 
+	display:block;
+}
+	
+@mixin before() {
+	@include after();
+}
+
+@mixin iblockmid() {
+	@include iblock();
+	vertical-align: middle;
+}
+
+
+@mixin dashed($clr, $aclr) {
+	text-decoration: none; 
+	color:$clr; 
+	border-bottom:1px dashed $aclr;
+}
+
+@mixin dashedhover($clr, $aclr, $hclr, $haclr) {
+	text-decoration: none; 
+	color:$clr; 
+	border-bottom:1px dashed $aclr;
+	
+	&:hover {
+		color:$hclr; 
+		border-color:$haclr
+	}
+}
+
+
+@mixin selectNone() {
+	-webkit-user-select: none; 
+	-moz-user-select: none; 
+	-ms-user-select: none; 
+	-o-user-select: none; 
+	user-select: none;
+}
+
+@mixin trn() {
+	$transitionTime: 0.3s; 
+	transition: all $transitionTime;
+}
+
+@mixin trnopacity() {
+	$transitionTime: 0.3s; 
+	transition: opacity $transitionTime;
+}
+
+@mixin trans($prop, $time) {
+	-webkit-transition: $prop $time;
+	-moz-transition: $prop $time;
+	-ms-transition: $prop $time;
+	-o-transition: $prop $time;
+	transition: $prop $time;
+}
+
+@mixin transit($time) {
+	-o-transition: -o-transform $time;
+	-ms-transition: -ms-transform $time; 
+	-moz-transition: -moz-transform $time; 
+	-webkit-transition: -webkit-transform $time; 
+	transition: transform $time;
+}

@@ -1,0 +1,32 @@
+.btn {
+  display: inline-block;
+  user-select:none;
+  vertical-align: middle;
+  font-size: 14px;
+  transition: all .3s;
+  cursor: pointer;
+  padding: 0 15px 1px;
+  height: 28px;
+  line-height: 28px;
+  text-decoration: none;
+  border-radius: 3px;
+  background: rgba(255,255,255,0.2);
+
+
+  &:hover {
+    background: rgba(255,255,255,0.4)
+  }
+
+  &:active,
+  &:hover:active {
+    background: rgba(255,255,255,0.3)
+  }
+
+  &[disabled],
+  &[disabled]:hover,
+  &[disabled]:active {
+    background: rgba(255,255,255,0.2);
+    cursor: default;
+    pointer-events: none;
+  }
+}
