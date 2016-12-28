@@ -15,7 +15,10 @@ const cst = {
   MONTHS: ['янв', 'фев', 'март', 'апр', 'мая', 'июн', 'июл', 'авг', 'сент', 'окт', 'нояб', 'дек'],
 
   CHART_OPTIONS: {
-    animation: false,
+    animation: {
+      duration: 800,
+      easing: 'easeOutQuart',
+    },
     responsive: true,
     maintainAspectRatio: true,
     legend: false,
@@ -79,7 +82,8 @@ const cst = {
   },
 
   MESSAGES: {
-    unknownError: 'Что-то пошло не так. Попробуйте обновить курс'
+    unknownError: 'Что-то пошло не так. Попробуйте обновить курс',
+    unknownLoadingError: 'Не удалось обновить курс'
   },
 
   LS: {
@@ -97,6 +101,8 @@ const cst = {
   UPDATE_COURSE_MONTH: 'UPDATE_COURSE_MONTH',
   UPDATE_COURSE_QUART: 'UPDATE_COURSE_QUART',
   CHANGE_ACTIVE_TAB: 'CHANGE_ACTIVE_TAB',
+  CHANGE_LOADING_MODE: 'CHANGE_LOADING_MODE',
+  CHANGE_SUCCESS_MODE: 'CHANGE_SUCCESS_MODE',
 }
 
 

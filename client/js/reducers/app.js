@@ -12,6 +12,20 @@ function app(state = {}, action) {
 			}
 
 
+		case cst.CHANGE_LOADING_MODE:
+			return {
+				...state,
+				isLoading: action.mode
+			}
+
+
+		case cst.SET_ERROR:
+			return {
+				...state,
+				error: action.ermsg
+			}
+
+
 		default:
       return state;
   }

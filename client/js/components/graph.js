@@ -10,6 +10,11 @@ export default class GraphView extends React.Component {
   }
 
 
+  shouldComponentUpdate(nextProps, nextState) {
+    return nextProps.app.isLoading == false
+  }
+
+
   render() {
     const color = this.props.color;
     const period = this.props.period;

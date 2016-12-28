@@ -4,9 +4,11 @@ import helpers from '../helpers';
 import webapi from '../webapi';
 import cst from '../const';
 
+import Btn from './btn';
 import Tabs from './tabs';
 import Header from './header';
 import GraphView from './graph';
+import Notif from './notification';
 
 
 export default class Main extends React.Component {
@@ -46,7 +48,7 @@ export default class Main extends React.Component {
 
 
   getCourse() {
-    webapi.getTodaysCourse().then(
+    return webapi.getTodaysCourse().then(
       result => {
         const cur = result.Value;
         const prev = result.Previous;
@@ -62,7 +64,7 @@ export default class Main extends React.Component {
 
 
   getWeeklyCourse() {
-    webapi.getCourse(cst.TABS_PERIODS_LATIN[0]).then(
+    return webapi.getCourse(cst.TABS_PERIODS_LATIN[0]).then(
 
       result => {
         let data = [], labels = [], fulllabels = [];
@@ -85,7 +87,7 @@ export default class Main extends React.Component {
 
 
   getMonthlyCourse() {
-    webapi.getCourse(cst.TABS_PERIODS_LATIN[1]).then(
+    return webapi.getCourse(cst.TABS_PERIODS_LATIN[1]).then(
 
       result => {
         let data = [], labels = [], fulllabels = [];
@@ -115,7 +117,7 @@ export default class Main extends React.Component {
 
 
   getQuartlyCourse() {
-    webapi.getCourse(cst.TABS_PERIODS_LATIN[2]).then(
+    return webapi.getCourse(cst.TABS_PERIODS_LATIN[2]).then(
 
       result => {
         let data = [], labels = [], fulllabels = [];
@@ -152,12 +154,40 @@ export default class Main extends React.Component {
   }
 
 
+  handleClickReloadBtn() {
+    this.props.setLoadingMode(true);
+
+    const self = this;
+    self.getCourse().then(() => {
+      return self.getWeeklyCourse()
+    }).then(() => {
+      return self.getMonthlyCourse()
+    }).then(() => {
+      return self.getQuartlyCourse();
+    }).then(() => {
+      setTimeout(() => {
+        this.props.setLoadingMode(false);
+      }, 1000)
+    }).catch(e => {
+      this.props.setError(cst.MESSAGES.unknownLoadingError);
+      this.props.setLoadingMode(false);
+    })
+  }
+
+
   render() {
     const themeColor = this.state.themeColor || cst.DEF_COLOR;
     const activeTab = this.props.app.activeTab || 0;
 
+    const isLoading = this.props.app.isLoading || false;
+    const btnText = isLoading ? 'Обновляем...' : 'Обновить';
+
+    const error = this.props.app.error;
+
     return (
       <div className="crs" ref="root">
+        {error ? <Notif type="error" text={error} /> : null}
+
         <div className="crs-header">
           <Header {...this.props} />
         </div>
@@ -171,6 +201,14 @@ export default class Main extends React.Component {
             color={themeColor}
             period={cst.TABS_PERIODS_LATIN[activeTab]}
             {...this.props}
+          />
+        </div>
+
+        <div className="crs-reload">
+          <Btn
+            text={btnText}
+            disabled={isLoading}
+            onClick={this.handleClickReloadBtn.bind(this)}
           />
         </div>
       </div>

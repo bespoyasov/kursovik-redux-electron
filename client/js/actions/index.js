@@ -6,7 +6,7 @@ export function updateCourseValue(cur, prev) {
 		type: cst.UPDATE_COURSE_VALUE,
 		cur, prev
 	}
-};
+}
 
 
 export function updateCourseWeek(data, labels, fulllabels) {
@@ -37,5 +37,21 @@ export function changeActiveTab(idx) {
 	return {
 		type: cst.CHANGE_ACTIVE_TAB,
 		idx
+	}
+}
+
+
+export function setLoadingMode(mode) {
+	return {
+		type: cst.CHANGE_LOADING_MODE,
+		mode
+	}
+}
+
+
+export function setError(ermsg) {
+	return {
+		type: cst.SET_ERROR,
+		ermsg
 	}
 }

@@ -19,16 +19,6 @@ const webapi = {
   },
 
 
-  // updateCourseValue: (cur, prev) => {
-  //   const ls = window.localStorage;
-  //
-  //   if (ls) {
-  //     ls.setItem(cst.LS.current, cur);
-  //     ls.setItem(cst.LS.prev, prev);
-  //   }
-  // },
-
-
   getCourse: (period) => {
     let daysAgo = 8;
 
@@ -63,30 +53,8 @@ const webapi = {
         reject(error);
       })
     });
-  },
+  }
 
-
-  // saveSettingsAndData: (app, course) => {
-  //   const ls = window.localStorage;
-  //
-  //   if (ls) {
-  //     ls.setItem(cst.LS.app, JSON.stringify(app));
-  //     ls.setItem(cst.LS.course, JSON.stringify(course));
-  //   }
-  // },
-  //
-  //
-  // getSettingsAndData: () => {
-  //   const ls = window.localStorage;
-  //   let app = null, course = null;
-  //
-  //   if (ls) {
-  //     app = JSON.parse(ls.getItem(cst.LS.app));
-  //     course = JSON.parse(ls.getItem(cst.LS.course));
-  //   }
-  //
-  //   return { app, course }
-  // }
 };
 
 

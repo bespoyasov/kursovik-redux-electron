@@ -16,4 +16,16 @@
     font-size:15px;
     padding:5px 0 0 0;
   }
+
+  &.is-shaking .header-value {
+    animation: shaking 0.2s 2;
+  }
+}
+
+
+@keyframes shaking {
+  0% { transform: translateX(0); }
+  33% { transform: translateX(-2px); }
+  66% { transform: translateX(2px); }
+  100% { transform: translateX(0); }
 }

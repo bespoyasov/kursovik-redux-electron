@@ -7,6 +7,30 @@ export default class Header extends React.Component {
 
   constructor(props, context) {
     super(props, context);
+
+    this.handleTransitionEnd = this.handleTransitionEnd.bind(this);
+  }
+
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return nextProps.app.isLoading == false
+  }
+
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.app.isLoading) this.refs.root.classList.add('is-shaking');
+
+    document.addEventListener('transitionend', this.handleTransitionEnd);
+  }
+
+
+  componentWillUnmount() {
+    document.removeEventListener('transitionend', this.handleTransitionEnd);
+  }
+
+
+  handleTransitionEnd() {
+    this.refs.root.classList.remove('is-shaking');
   }
 
 
@@ -18,9 +42,9 @@ export default class Header extends React.Component {
     const delta = helpers.getDelta(cur, prev);
 
     return (
-      <header className="header">
+      <header className="header" ref="root">
         <div className="header-title">Курс $ по <span className="smallcaps">ЦБ РФ</span></div>
-        <div className="header-value">
+        <div className="header-value" ref="value">
           {curStr}<span className="halfspace"></span>{cst.RUB_SIGN}
         </div>
         {delta ? <div className="header-delta">{delta}</div> : null}
