@@ -26,6 +26,14 @@ function app(state = {}, action) {
 			}
 
 
+		case cst.SET_CONNECTION_STATUS:
+			return {
+				...state,
+				connection: action.status,
+				error: !action.status ? cst.MESSAGES.noConnection : null,
+			}
+
+
 		default:
       return state;
   }

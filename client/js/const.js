@@ -56,7 +56,7 @@ const cst = {
         ticks: {
           fontColor: 'rgba(255,255,255,.8)',
           fontFamily: 'Helvetica, sans-serif',
-          callback: function(tick) { return tick.toFixed(2); },
+          callback: function(tick) { return tick.toFixed(2).toString().replace('.', ','); },
         }
       }]
     }
@@ -83,14 +83,14 @@ const cst = {
 
   MESSAGES: {
     unknownError: 'Что-то пошло не так. Попробуйте обновить курс',
-    unknownLoadingError: 'Не удалось обновить курс'
+    unknownLoadingError: 'Не удалось обновить курс',
+
+    noConnection: 'Не удалось подключиться к интернету. Показываем последний сохранённый курс',
+    connection: 'Подключение к интернету восстановлено'
   },
 
   LS: {
-    current: 'kursovik_current',
-    prev: 'kursovik_prev',
     course: 'kursovik_course',
-    app: 'kursovik_app',
   },
 
   TABS_PERIODS: ['Неделя', 'Месяц', '3 месяца'],
@@ -100,9 +100,13 @@ const cst = {
   UPDATE_COURSE_WEEK: 'UPDATE_COURSE_WEEK',
   UPDATE_COURSE_MONTH: 'UPDATE_COURSE_MONTH',
   UPDATE_COURSE_QUART: 'UPDATE_COURSE_QUART',
+
   CHANGE_ACTIVE_TAB: 'CHANGE_ACTIVE_TAB',
   CHANGE_LOADING_MODE: 'CHANGE_LOADING_MODE',
   CHANGE_SUCCESS_MODE: 'CHANGE_SUCCESS_MODE',
+
+  SET_ERROR: 'SET_ERROR',
+  SET_CONNECTION_STATUS: 'SET_CONNECTION_STATUS',
 }
 
 

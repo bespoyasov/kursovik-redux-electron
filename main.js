@@ -3,8 +3,22 @@ const path = require('path')
 const app = electron.app
 const Menu = electron.Menu;
 const BrowserWindow = electron.BrowserWindow
+//const isOnline = require('is-online')
 
-let mainWindow = null;
+
+let mainWindow = null,
+    connection = true;
+
+
+// isOnline()
+//   .then(online => {
+//     connection = true
+//   })
+//   .catch(er => {
+//     connection = false
+//   });
+//
+// global.sharedObj = {connection: connection};
 
 
 const template = [
@@ -109,7 +123,7 @@ require('electron-context-menu')({
 });
 
 
-function createWindow () {
+function createWindow() {
   const menu = Menu.buildFromTemplate(template)
   Menu.setApplicationMenu(menu)
 
@@ -120,8 +134,8 @@ function createWindow () {
     icon: path.join(__dirname, 'assets/app-icon.png')
   })
 
-  mainWindow.loadURL(`file://${__dirname}/public/index.html`)
-  //mainWindow.loadURL(`http://localhost:8080`);
+  //mainWindow.loadURL(`file://${__dirname}/public/index.html`)
+  mainWindow.loadURL(`http://localhost:8080`);
 
   mainWindow.on('closed', function () {
     mainWindow = null

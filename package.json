@@ -9,7 +9,7 @@
     "dev": "NODE_ENV=development webpack-dev-server --hot --inline --progress --host 0.0.0.0",
     "build": "NODE_ENV=production webpack",
     "pack": "node_modules/.bin/electron-packager . --all",
-    "packmas": "node_modules/.bin/electron-packager . --platform=mas --icon=assets/app-icon.icns --overwrite"
+    "packmas": "node_modules/.bin/electron-packager . --platform=mas --icon=assets/app_icon.icns --overwrite"
   },
   "devDependencies": {
     "autoprefixer": "^6.3.6",
@@ -43,6 +43,7 @@
   "dependencies": {
     "chart.js": "^1.1.1",
     "electron-context-menu": "^0.8.0",
+    "is-online": "^6.0.1",
     "moment": "^2.15.1",
     "node-sass": "^3.8.0",
     "react": "^15.1.0",

@@ -1,24 +1,30 @@
-const course = {
-  prev: 0,
-  current: 0,
-  week: {
-    data: [],
-    labels: [],
-    fulllabels: []
-  },
-  month: {
-    data: [],
-    labels: [],
-    fulllabels: []
-  },
-  quart: {
-    data: [],
-    labels: [],
-    fulllabels: []
-  },
+import webapi from '../webapi';
 
-  error: false,
-}
+
+const course =
+  window.navigator.onLine ?
+  {
+    prev: 0,
+    current: 0,
+    week: {
+      data: [],
+      labels: [],
+      fulllabels: []
+    },
+    month: {
+      data: [],
+      labels: [],
+      fulllabels: []
+    },
+    quart: {
+      data: [],
+      labels: [],
+      fulllabels: []
+    },
+
+    error: false,
+  } :
+  webapi.getLocalCourse()
 
 
 export default course;

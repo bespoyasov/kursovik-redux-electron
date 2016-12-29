@@ -53,6 +53,28 @@ const webapi = {
         reject(error);
       })
     });
+  },
+
+
+  setLocalCourse: (course) => {
+    const ls = window.localStorage;
+
+    try {
+      const item = cst.LS.course;
+      ls.setItem(item, JSON.stringify(course));
+    }
+    catch (er) {}
+  },
+
+
+  getLocalCourse: () => {
+    const ls = window.localStorage;
+
+    try {
+      const item = cst.LS.course;
+      return JSON.parse(ls.getItem(item))
+    }
+    catch (er) {}
   }
 
 };

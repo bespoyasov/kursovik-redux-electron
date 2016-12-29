@@ -55,3 +55,11 @@ export function setError(ermsg) {
 		ermsg
 	}
 }
+
+
+export function changeConnectionStatus(status) {
+	return {
+		type: cst.SET_CONNECTION_STATUS,
+		status
+	}
+}

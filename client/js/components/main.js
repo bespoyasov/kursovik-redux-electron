@@ -16,6 +16,8 @@ export default class Main extends React.Component {
   constructor(props, context) {
     super(props, context);
 
+    this.updateOnlineStatus = this.updateOnlineStatus.bind(this);
+
     this.state = {
       themeColor: null
     }
@@ -23,13 +25,28 @@ export default class Main extends React.Component {
 
 
   componentDidMount() {
+    // show right now
     this.setRandomTheme();
     this.getCourse();
-    this.getWeeklyCourse();
     this.removeLoader();
 
-    this.getMonthlyCourse();
-    this.getQuartlyCourse();
+    // background updates for localstorage
+    this.getWeeklyCourse().then(res => {
+      this.getMonthlyCourse();
+    }).then(res => {
+      this.getQuartlyCourse();
+    });
+
+    window.addEventListener('online',  this.updateOnlineStatus);
+    window.addEventListener('offline', this.updateOnlineStatus);
+  }
+
+
+  componentDidUpdate() {
+    // when no internet connection will be shown last saved data
+    if (this.props.course.quart.data.length > 0) {
+      webapi.setLocalCourse(this.props.course);
+    }
   }
 
 
@@ -47,6 +64,11 @@ export default class Main extends React.Component {
   }
 
 
+  updateOnlineStatus(event) {
+    this.props.changeConnectionStatus(navigator.onLine);
+  }
+
+
   getCourse() {
     return webapi.getTodaysCourse().then(
       result => {
@@ -56,8 +78,8 @@ export default class Main extends React.Component {
         this.updateTitle(cur, prev);
       },
       error => {
-        const errMsg = cst.MESSAGES.unknownError;
-        this.props.showErrorNotification(errMsg);
+        const errMsg = !navigator.onLine ? cst.MESSAGES.noConnection : cst.MESSAGES.unknownError;
+        this.props.setError(errMsg);
       }
     );
   }
@@ -79,8 +101,8 @@ export default class Main extends React.Component {
         this.props.updateCourseWeek(data, labels, fulllabels);
       },
       error => {
-        const errMsg = cst.MESSAGES.unknownError;
-        this.props.showErrorNotification(errMsg);
+        const errMsg = !navigator.onLine ? cst.MESSAGES.noConnection : cst.MESSAGES.unknownError;
+        this.props.setError(errMsg);
       }
     );
   }
@@ -109,8 +131,8 @@ export default class Main extends React.Component {
         this.props.updateCourseMonth(data, labels, fulllabels);
       },
       error => {
-        const errMsg = cst.MESSAGES.unknownError;
-        this.props.showErrorNotification(errMsg);
+        const errMsg = !navigator.onLine ? cst.MESSAGES.noConnection : cst.MESSAGES.unknownError;
+        this.props.setError(errMsg);
       }
     );
   }
@@ -140,8 +162,8 @@ export default class Main extends React.Component {
         this.props.updateCourseQuart(data, labels, fulllabels);
       },
       error => {
-        const errMsg = cst.MESSAGES.unknownError;
-        this.props.showErrorNotification(errMsg);
+        const errMsg = !navigator.onLine ? cst.MESSAGES.noConnection : cst.MESSAGES.unknownError;
+        this.props.setError(errMsg);
       }
     );
   }
@@ -166,6 +188,7 @@ export default class Main extends React.Component {
       return self.getQuartlyCourse();
     }).then(() => {
       setTimeout(() => {
+        this.props.setError(null);
         this.props.setLoadingMode(false);
       }, 1000)
     }).catch(e => {
@@ -181,6 +204,7 @@ export default class Main extends React.Component {
 
     const isLoading = this.props.app.isLoading || false;
     const btnText = isLoading ? 'Обновляем...' : 'Обновить';
+    const connection = this.props.app.connection;
 
     const error = this.props.app.error;
 
@@ -204,13 +228,13 @@ export default class Main extends React.Component {
           />
         </div>
 
-        <div className="crs-reload">
+        {connection ? <div className="crs-reload">
           <Btn
             text={btnText}
             disabled={isLoading}
             onClick={this.handleClickReloadBtn.bind(this)}
           />
-        </div>
+        </div> : null}
       </div>
     )
   }

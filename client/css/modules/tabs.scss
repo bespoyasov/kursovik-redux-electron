@@ -3,6 +3,7 @@
   text-align: center;
   font-size:0;
   user-select:none;
+  speak: none;
 
   &-tab {
     position: relative;
@@ -17,6 +18,7 @@
     height: 26px;
     line-height: 26px;
     text-decoration: none;
+    speak: none;
 
     &:hover {
       background: rgba(255,255,255,0.3)
@@ -36,6 +38,7 @@
       border-color: #fff;
       background: #fff;
       cursor: default;
+      pointer-events: none;
     }
   }
 }
