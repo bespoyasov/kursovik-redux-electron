@@ -37,6 +37,8 @@ export default class Main extends React.Component {
       this.getQuartlyCourse();
     });
 
+    this.getTomorrowCourse();
+
     window.addEventListener('online',  this.updateOnlineStatus);
     window.addEventListener('offline', this.updateOnlineStatus);
   }
@@ -80,6 +82,18 @@ export default class Main extends React.Component {
       error => {
         const errMsg = !navigator.onLine ? cst.MESSAGES.noConnection : cst.MESSAGES.unknownError;
         this.props.setError(errMsg);
+      }
+    );
+  }
+
+
+  getTomorrowCourse() {
+    return webapi.getCourse(cst.TABS_PERIODS_LATIN[3]).then(
+
+      result => {
+        console.log(result);
+
+        // this.props.updateCourseTomorrow(value);
       }
     );
   }

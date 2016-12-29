@@ -6,6 +6,7 @@ const course =
   {
     prev: 0,
     current: 0,
+    tomorrow: 0,
     week: {
       data: [],
       labels: [],

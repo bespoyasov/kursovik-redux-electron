@@ -13,6 +13,13 @@ function course(state = {}, action) {
 			}
 
 
+		case cst.UPDATE_COURSE_TOMORROW:
+			return {
+				...state,
+				tomorrow: action.value
+			}
+
+
 		case cst.UPDATE_COURSE_WEEK:
 			return {
 				...state,

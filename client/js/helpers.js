@@ -60,8 +60,10 @@ const helpers = {
       deltaPositive = cur - prev > 0;
       deltaStr =
         delta > 0 ?
-        '▲ ' + delta + ' ' + cst.RUB_SIGN :
-        '▼ ' + delta + ' ' + cst.RUB_SIGN;
+        'Вырос на ' + delta + ' ' + cst.RUB_SIGN :
+        'Упал на ' + delta + ' ' + cst.RUB_SIGN;
+        //'▲ ' + delta + ' ' + cst.RUB_SIGN :
+        //'▼ ' + delta + ' ' + cst.RUB_SIGN;
 
       return deltaStr;
     }

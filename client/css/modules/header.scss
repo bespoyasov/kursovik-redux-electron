@@ -12,7 +12,15 @@
 
   &-delta {
     display:inline-block;
-    margin-left:-10px;
+    //margin-left:-10px;
+    font-size:15px;
+    padding:5px 0 0 0;
+    speak: none;
+  }
+
+  &-tomorrow {
+    display:inline-block;
+    margin-left:20px;
     font-size:15px;
     padding:5px 0 0 0;
     speak: none;

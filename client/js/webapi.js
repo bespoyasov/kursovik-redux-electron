@@ -26,6 +26,7 @@ const webapi = {
       case cst.TABS_PERIODS_LATIN[0]: daysAgo = 8; break;
       case cst.TABS_PERIODS_LATIN[1]: daysAgo = 30; break;
       case cst.TABS_PERIODS_LATIN[2]: daysAgo = 90; break;
+      case cst.TABS_PERIODS_LATIN[3]: daysAgo = -1; break;
       default: break;
     }
 

@@ -9,6 +9,14 @@ export function updateCourseValue(cur, prev) {
 }
 
 
+export function updateCourseTomorrow(value) {
+	return {
+		type: cst.UPDATE_COURSE_TOMORROW,
+		value
+	}
+}
+
+
 export function updateCourseWeek(data, labels, fulllabels) {
 	return {
 		type: cst.UPDATE_COURSE_WEEK,

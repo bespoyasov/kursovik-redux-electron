@@ -45,6 +45,7 @@ export default class Header extends React.Component {
     const curStr = cur.toFixed(2).toString().replace('.', ',');
     const prev = prps.prev;
     const delta = helpers.getDelta(cur, prev);
+    const tomorrow = prps.tomorrow;
 
     return (
       <header className="header" ref="root">
@@ -52,7 +53,15 @@ export default class Header extends React.Component {
         <div className="header-value" ref="value">
           {curStr}<span className="halfspace"></span>{cst.RUB_SIGN}
         </div>
+
         {delta ? <div className="header-delta">{delta}</div> : null}
+
+        {tomorrow ?
+        <div className="header-tomorrow">
+          Завтра: {tomorrow} {cst.RUB_SIGN}
+        </div> :
+        null}
+
       </header>
     )
   }
