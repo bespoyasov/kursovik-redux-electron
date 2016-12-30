@@ -15,7 +15,7 @@ export default class GraphView extends React.Component {
       // if user reloaded
       !nextProps.app.isLoading && this.props.app.isLoading ||
       // if reconnected
-      nextProps.app.connection && !this.props.app.connection ||
+      //nextProps.app.connection && !this.props.app.connection ||
       // if changed graph
       JSON.stringify(nextProps.course[nextProps.period]) !=
       JSON.stringify(this.props.course[this.props.period])

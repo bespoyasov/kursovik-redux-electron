@@ -10,5 +10,13 @@
     <div id="app"></div>
   </body>
 
+  <script type="text/javascript">
+    var ipcRenderer = require('electron').ipcRenderer;
+
+    document.addEventListener('updateTitle', () => {
+      ipcRenderer.send('sent-course', document.getElementsByTagName('title')[0].innerText);
+    })
+  </script>
+
   <script tyle="text/javascript" src="./js/app.js"></script>
 </html>

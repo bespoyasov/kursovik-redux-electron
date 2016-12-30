@@ -3,6 +3,20 @@
   "version": "1.0.0",
   "description": "Показывает курс доллара",
   "author": "Александр Беспоясов",
+  "person": {
+    "name" : "Александр Беспоясов",
+    "email" : "bespoyasov@me.com",
+    "url" : "http://bespoyasov.ru/"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bespoyasov/kursovik-redux-electron"
+  },
+  "bugs": {
+    "url": "https://github.com/bespoyasov/kursovik-redux-electron/issues"
+  },
+
   "main": "main.js",
   "scripts": {
     "start": "electron .",

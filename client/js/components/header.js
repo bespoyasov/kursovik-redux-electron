@@ -19,8 +19,8 @@ export default class Header extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (
-      prevProps.app.isLoading ||
-      !prevProps.app.connection && this.props.app.connection
+      prevProps.app.isLoading// ||
+      //!prevProps.app.connection && this.props.app.connection
     ) {
       this.refs.root.classList.add('is-shaking');
     }

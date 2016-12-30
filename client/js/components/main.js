@@ -67,6 +67,7 @@ export default class Main extends React.Component {
 
 
   updateOnlineStatus(event) {
+    if (navigator.onLine) this.handleClickReloadBtn();
     this.props.changeConnectionStatus(navigator.onLine);
   }
 
@@ -89,11 +90,9 @@ export default class Main extends React.Component {
 
   getTomorrowCourse() {
     return webapi.getCourse(cst.TABS_PERIODS_LATIN[3]).then(
-
       result => {
-        console.log(result);
-
-        // this.props.updateCourseTomorrow(value);
+        const value = result && result.length ? result[0] : 0;
+        this.props.updateCourseTomorrow(result[0]);
       }
     );
   }
@@ -187,6 +186,11 @@ export default class Main extends React.Component {
     const curr = helpers.formatSum(cur);
     const delta = helpers.getDelta(cur, prev);
     document.querySelectorAll('title')[0].innerHTML = '1$ = ' + curr + '₽ — ' + delta;
+
+    // update title in main process
+    window.updateTitleEvent = document.createEvent('Event');
+    updateTitleEvent.initEvent('updateTitle', true, true);
+    document.dispatchEvent(updateTitleEvent);
   }
 
 
