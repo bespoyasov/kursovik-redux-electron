@@ -23,7 +23,8 @@
     "dev": "NODE_ENV=development webpack-dev-server --hot --inline --progress --host 0.0.0.0",
     "build": "NODE_ENV=production webpack",
     "pack": "node_modules/.bin/electron-packager . --all",
-    "packmas": "node_modules/.bin/electron-packager . --platform=mas --icon=assets/app_icon.icns --overwrite"
+    "packmas": "node_modules/.bin/electron-packager . --platform=mas --icon=assets/app_icon.icns --overwrite",
+    "packwin": "node_modules/.bin/electron-packager . --platform=win32 --icon=assets/app_icon.icns --overwrite"
   },
   "devDependencies": {
     "autoprefixer": "^6.3.6",

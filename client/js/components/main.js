@@ -73,10 +73,11 @@ export default class Main extends React.Component {
 
 
   getCourse() {
-    return webapi.getTodaysCourse().then(
+    return webapi.getCourse(cst.TABS_PERIODS_LATIN[4]).then(
       result => {
-        const cur = result.Value;
-        const prev = result.Previous;
+        const cur = parseFloat(result[result.length - 1].children[1].content.replace(',', '.')),
+              prev = parseFloat(result[result.length - 2].children[1].content.replace(',', '.'));
+
         this.props.updateCourseValue(cur, prev);
         this.updateTitle(cur, prev);
       },
@@ -85,14 +86,25 @@ export default class Main extends React.Component {
         this.props.setError(errMsg);
       }
     );
+
+    // deprecated
+    // return webapi.getTodaysCourse().then(
+    //   result => {
+    //     const cur = result.Value;
+    //     const prev = result.Previous;
+    //   }
   }
 
 
   getTomorrowCourse() {
     return webapi.getCourse(cst.TABS_PERIODS_LATIN[3]).then(
       result => {
-        const value = result && result.length ? result[0] : 0;
-        this.props.updateCourseTomorrow(result[0]);
+        const value =
+          result && result.length ?
+          parseFloat(result[result.length - 1].children[1].content.replace(',', '.')) :
+          0;
+
+        this.props.updateCourseTomorrow(value);
       }
     );
   }

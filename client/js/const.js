@@ -1,5 +1,6 @@
 const cst = {
-  CB_URL_TODAY: 'http://www.cbr-xml-daily.ru/daily_json.js',
+  // deprecated
+  //CB_URL_TODAY: 'http://www.cbr-xml-daily.ru/daily_json.js',
   CB_URL_DATE: 'http://www.cbr.ru/scripts/XML_dynamic.asp',
   CB_URL_DATE_QUERY_1: 'date_req1=',
   CB_URL_DATE_QUERY_2: 'date_req2=',
@@ -94,7 +95,7 @@ const cst = {
   },
 
   TABS_PERIODS: ['Неделя', 'Месяц', '3 месяца'],
-  TABS_PERIODS_LATIN: ['week', 'month', 'quart', 'tomorrow'],
+  TABS_PERIODS_LATIN: ['week', 'month', 'quart', 'tomorrow', 'today'],
 
   UPDATE_COURSE_VALUE: 'UPDATE_COURSE_VALUE',
   UPDATE_COURSE_TOMORROW: 'UPDATE_COURSE_TOMORROW',

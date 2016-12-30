@@ -18,12 +18,7 @@ export default class Header extends React.Component {
 
 
   componentDidUpdate(prevProps, prevState) {
-    if (
-      prevProps.app.isLoading// ||
-      //!prevProps.app.connection && this.props.app.connection
-    ) {
-      this.refs.root.classList.add('is-shaking');
-    }
+    if (prevProps.app.isLoading) this.refs.root.classList.add('is-shaking');
 
     document.addEventListener('transitionend', this.handleTransitionEnd);
   }
@@ -45,7 +40,7 @@ export default class Header extends React.Component {
     const curStr = cur.toFixed(2).toString().replace('.', ',');
     const prev = prps.prev;
     const delta = helpers.getDelta(cur, prev);
-    const tomorrow = prps.tomorrow;
+    const tomorrow = prps.tomorrow.toFixed(2).toString().replace('.', ',');
 
     return (
       <header className="header" ref="root">
