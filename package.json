@@ -24,8 +24,9 @@
     "build": "NODE_ENV=production webpack",
     "pack": "node_modules/.bin/electron-packager . --all",
     "packmas": "node_modules/.bin/electron-packager . --platform=mas --icon=assets/app_icon.icns --overwrite",
-    "packwin": "node_modules/.bin/electron-packager . --platform=win32 --icon=assets/app_icon.icns --overwrite"
+    "packwin": "node_modules/.bin/electron-packager . --platform=win32 --icon=assets/icon.ico --overwrite"
   },
+
   "devDependencies": {
     "autoprefixer": "^6.3.6",
     "babel": "^6.5.2",
