@@ -112,8 +112,8 @@ require('electron-context-menu')({
 
 
 function createWindow() {
-  const menu = Menu.buildFromTemplate(template)
-  Menu.setApplicationMenu(menu)
+  // const menu = Menu.buildFromTemplate(template)
+  // Menu.setApplicationMenu(menu)
 
   if (!tray) {
     function getBuiltContextMenu(label) {
@@ -147,8 +147,8 @@ function createWindow() {
     icon: path.join(__dirname, 'assets/app-icon.png')
   })
 
-  mainWindow.loadURL(`file://${__dirname}/public/index.html`)
-  //mainWindow.loadURL(`http://localhost:8080`);
+  //mainWindow.loadURL(`file://${__dirname}/public/index.html`)
+  mainWindow.loadURL(`http://localhost:8080`);
 
   mainWindow.on('closed', function () {
     mainWindow = null
