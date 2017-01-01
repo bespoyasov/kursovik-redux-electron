@@ -24,9 +24,9 @@
     "build": "NODE_ENV=production webpack",
     "clean": "rm -r Kursovik-win32-x64 Kursovik-mas-x64 Kursovik-linux-x64",
     "pack": "npm run clean && node_modules/.bin/electron-packager . --all",
-    "packmas": "node_modules/.bin/electron-packager . --platform=mas --icon=assets/app_icon.icns --overwrite",
-    "packwin": "node_modules/.bin/electron-packager . --platform=win32 --icon=assets/icon.ico --overwrite",
-    "packlin": "node_modules/.bin/electron-packager . --platform=linux --icon=assets/app_icon.icns --overwrite"
+    "packmas": "rm -r Kursovik-mas-x64 && node_modules/.bin/electron-packager . --platform=mas --icon=assets/app_icon.icns --overwrite",
+    "packwin": "rm -r Kursovik-win32-x64 && node_modules/.bin/electron-packager . --platform=win32 --icon=assets/icon.ico --overwrite",
+    "packlin": "rm -r Kursovik-linux-x64 && node_modules/.bin/electron-packager . --platform=linux --icon=assets/app_icon.icns --overwrite"
   },
 
   "devDependencies": {
