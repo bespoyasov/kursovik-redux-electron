@@ -75,6 +75,8 @@ export default class Main extends React.Component {
   getCourse() {
     return webapi.getCourse(cst.TABS_PERIODS_LATIN[4]).then(
       result => {
+        if (!result || !result.length) return
+
         const cur = parseFloat(result[result.length - 1].children[1].content.replace(',', '.')),
               prev = parseFloat(result[result.length - 2].children[1].content.replace(',', '.'));
 

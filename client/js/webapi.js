@@ -36,8 +36,8 @@ const webapi = {
           prevMonth = helpers.getMonthAgo(daysAgo),
           prevYear = helpers.getYearAgo(daysAgo),
           now = new Date(),
-          nowDate = now.getDate(),
-          nowMonth = now.getMonth() + 1,
+          nowDate = now.getDate() < 10 ? '0' + now.getDate() : now.getDate(),
+          nowMonth = (now.getMonth() + 1) < 10 ? '0' + (now.getMonth() + 1) : now.getMonth() + 1,
           nowYear = now.getFullYear();
 
     const fetchChangeUrl =
