@@ -51,7 +51,7 @@ export default class Header extends React.Component {
 
         {delta ? <div className="header-delta">{delta}</div> : null}
 
-        {prps.tomorrow ?
+        {prps.tomorrow && prps.tomorrow != cur ?
         <div className="header-tomorrow">
           Завтра: {tomorrow} {cst.RUB_SIGN}
         </div> :
