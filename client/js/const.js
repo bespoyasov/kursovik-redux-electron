@@ -1,13 +1,14 @@
+const windows = window.navigator.userAgent.indexOf("Windows") > -1;
+const windows10 = window.navigator.userAgent.indexOf("Windows NT 10") > -1;
+
 const cst = {
-  // deprecated
-  //CB_URL_TODAY: 'http://www.cbr-xml-daily.ru/daily_json.js',
   CB_URL_DATE: 'http://www.cbr.ru/scripts/XML_dynamic.asp',
   CB_URL_DATE_QUERY_1: 'date_req1=',
   CB_URL_DATE_QUERY_2: 'date_req2=',
   CB_URL_DATE_QUERY_3: '&VAL_NM_RQ=R01235',
 
   USD_CHAR: 'USD',
-  RUB_SIGN: '₽' || 'Р',
+  RUB_SIGN: !windows || windows10 ? '₽' : 'Р',
 
   COLORS: ['#ffffff', '#009dff', '#695aa0', '#254b6e', '#e58549', '#9b14ff'],
   DEF_COLOR: '#ffffff',
